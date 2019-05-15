@@ -7,7 +7,7 @@ The openDoor function should return true if
 at least one person at the door has the name Simon,
 and hasCoffee is true. Otherwise return false.
 
-Does your solutino work when only one person is at the door? 
+Does your solution work when only one person is at the door? 
 What if no one is there?
 
 Beast mode: make it work when multiple people come to the door
@@ -17,7 +17,12 @@ mocha 03_openDoor.js
 */
 
 function openDoor(input) {
-	// Your code here
+	for (person of input) {
+		if (person.name === "Simon" && person.hasCoffee) {
+			return true
+		}
+	}
+	return false
 }
 
 function makeItem(name, hasCoffee) {
