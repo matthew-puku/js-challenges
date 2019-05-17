@@ -77,7 +77,7 @@ const productCost = (productId) => {
 }
 
 const formatAddress = (email) => {
-  const ad = shop.customers['jane@doe.com'].address;
+  const ad = shop.customers[email].address;
   return `${ad.streetNumber} ${ad.street}, ${ad.city}, ${ad.postcode}`;
 }
 
