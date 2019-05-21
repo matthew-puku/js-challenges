@@ -12,8 +12,19 @@
 
 
 function findWinner(players) {
-    // Your code here
+    // Define winner as the first player. This means the first player is returned
+    // in case of ties.
+    let winner = players[0]
 
+    i = 1
+    while (i < players.size) {
+        // Compare each player's score with the current leader. Update winner if necessary.
+        if (players[i].scores.reduce((total, score) => total + score) > winner.scores.reduce((total, score) => total + score)) {
+            winner = players[i]
+        }
+    }
+
+    return winner.name
 }
 
 
