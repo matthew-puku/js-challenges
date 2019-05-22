@@ -16,8 +16,37 @@ Example:
 
 */
 
+function getMiddleIndex(array) {
+    return Math.ceil((array.length - 1) / 2)
+}
+
 function binarySearch(sortedArray, searchValue) {
-    // Your code here
+    let stepsTaken = 0
+    
+    let index = getMiddleIndex(sortedArray)
+   
+    // Declare control variable but leave undefined since we haven't done any logic
+    let middleValue 
+    while (middleValue != searchValue) {
+        let midpoint = getMiddleIndex(sortedArray)
+        middleValue = sortedArray[midpoint]
+
+        if (middleValue < searchValue) {
+            // Discard the bottom half of the array
+            sortedArray = sortedArray.slice(midpoint + 1, sortedArray.length)
+            // Move index to the location of next comparison
+            index += getMiddleIndex(sortedArray) + 1
+        }
+        if (middleValue > searchValue) {
+            // Discard the top half of the array
+            sortedArray = sortedArray.slice(0, midpoint)
+            // Move index to the location of next comparison
+            index -= Math.ceil((sortedArray.length) / 2)
+        }
+
+        stepsTaken++
+    }
+    return [index, stepsTaken]
 }
 
 
