@@ -32,14 +32,14 @@ function binarySearch(sortedArray, searchValue) {
         middleValue = sortedArray[midpoint]
 
         if (middleValue < searchValue) {
-            // Discard the bottom half of the array
             sortedArray = sortedArray.slice(midpoint + 1, sortedArray.length)
+            
             // Move index to the location of next comparison
             index += getMiddleIndex(sortedArray) + 1
         }
         if (middleValue > searchValue) {
-            // Discard the top half of the array
             sortedArray = sortedArray.slice(0, midpoint)
+
             // Move index to the location of next comparison
             index -= Math.ceil((sortedArray.length) / 2)
         }
