@@ -20,6 +20,9 @@
     body {
       text-align: center;
     }
+    input {
+      padding: 10px;
+    }
     </style>
   </head>
 
@@ -36,7 +39,8 @@
   const welcomeMessage = document.querySelector('h1')
   name.onkeyup = function () {
     // hint: name.value gives you the current text in the input box
-    welcomeMessage.textContent = `Welcome, ${name.value}!`;
+    
+    welcomeMessage.textContent = (name.value) ? `Welcome, ${name.value}!` : '';
   }
   </script>
 
