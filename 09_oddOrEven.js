@@ -10,7 +10,16 @@ for edge cases.
 */
 
 function oddOrEven(array) {
-    //enter code here
+    // Push a zero to handle the empty array.
+    array.push(0)
+    
+    sum = array.reduce((sum, number) => sum + number)
+    
+    if (sum === NaN || typeof(sum) != "number") {
+        throw new TypeError("Invalid item in array.")
+    }
+
+    return (sum % 2 === 0) ? 'even' : 'odd'
 }
 
 var assert = require('assert');
@@ -41,4 +50,17 @@ describe('oddOrEven', function () {
         assert.equal(oddOrEven([0, 1, -4]), 'odd')
         assert.equal(oddOrEven([-1023, -1, 3]), 'odd')
     });
+    it('Throws an error if passed a non-array', function () {
+        assert.throws(() => oddOrEven("string"), TypeError);
+        assert.throws(() => oddOrEven(1), TypeError);
+        assert.throws(() => oddOrEven(NaN), TypeError);
+    })
+    it('Throws an error if passed nothing', function () {
+        assert.throws(() => oddOrEven(), TypeError);
+    })
+    it('Throws an error if array contains non-numeric values', function () {
+        assert.throws(() => oddOrEven([1, 2, "string"]), TypeError);
+        assert.throws(() => oddOrEven([1, [2], 3]), TypeError);
+        assert.throws(() => oddOrEven([5, 6, {}]), TypeError);
+    })
 });
