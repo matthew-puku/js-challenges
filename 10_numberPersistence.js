@@ -14,7 +14,23 @@ Because 9*9*9 = 729, 7*2*9 = 126, 1*2*6 = 12, and 1*2 = 2
 */
 
 function persistence(num) {
-    //enter code here
+    // Base case, triggers when number is one digit along.
+    if (Math.floor(num / 10) === 0) {
+        return 0
+    }
+    
+    // Split into digits
+    let digits = []
+    while (num) {
+        digits.push(num % 10);
+        num = Math.floor(num/10);
+    }
+
+    // Multiply digits together
+    let newnum = digits.reduce((product, digit) => product * digit)
+
+    // Try the function again with new number
+    return persistence(newnum) + 1
 }
 
 
