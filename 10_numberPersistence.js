@@ -14,7 +14,7 @@ Because 9*9*9 = 729, 7*2*9 = 126, 1*2*6 = 12, and 1*2 = 2
 */
 
 function persistence(num) {
-    // Base case, triggers when number is one digit along.
+    // Base case, triggers when number is one digit long.
     if (Math.floor(num / 10) === 0) {
         return 0
     }
