@@ -14,8 +14,18 @@ mocha 12_vowels.js
 
 
 
-function vowels (string) {
-    // Your code here
+function vowels(string) {
+    let vowels = [];
+    let i = 0;
+
+    while (i < string.length) {
+        if (string[i].match(/[aeiou]/gmi)) {
+            vowels.push(string[i]);
+        }
+        i++;
+    }
+
+    return vowels;
 }
 
 
