@@ -58,10 +58,66 @@ const problem = {
   F: {}
 };
 
-const dijkstra = (graph, start, end) => {
-  // Your code here
-};
+function getCheapestUnvisitedNode(graph) {
+  let winningNode = false
+  let lowestCost = Infinity
 
+  for (let node in graph) {
+    if (
+      graph[node].dijkstraData.cost < lowestCost
+      && graph[node].dijkstraData.visited === false
+    ) {
+      winningNode = node
+      lowestCost = graph[node].dijkstraData.cost
+    }
+  }
+
+  return winningNode
+}
+
+const dijkstra = (graph, start, end) => {
+  // Start by attaching helpful properties to each node of the graph.
+  for (let node in graph) {
+    if (graph.hasOwnProperty(node)) {
+      graph[node].dijkstraData = {
+        cost: Infinity,
+        cheapestParent: null,
+        visited: false
+      }
+    }
+  }
+  graph[start].dijkstraData.cost = 0
+  
+  let workingNode = getCheapestUnvisitedNode(graph)
+  while (workingNode) {
+    for (let connectedNode in graph[workingNode]) {
+      if (connectedNode != "dijkstraData") {
+        // If it's cheaper to get to the connected node via this node, update its dijkstraData
+        let currentCost = graph[connectedNode].dijkstraData.cost
+        let proposedCost = graph[workingNode][connectedNode] + graph[workingNode].dijkstraData.cost
+        if (proposedCost < currentCost) {
+          graph[connectedNode].dijkstraData.cost = proposedCost
+          graph[connectedNode].dijkstraData.cheapestParent = workingNode
+        }
+      }
+    }
+    graph[workingNode].dijkstraData.visited = true
+    
+    workingNode = getCheapestUnvisitedNode(graph)
+  }
+  
+  let distance = graph[end].dijkstraData.cost
+  let path = []
+  // Fill path if a path exists
+  if (distance < Infinity) {
+    path.unshift(end)
+    while (graph[path[0]].dijkstraData.cheapestParent) {
+      path.unshift(graph[path[0]].dijkstraData.cheapestParent)
+    }
+  }
+
+  return { distance, path }
+};
 
 var assert = require('assert');
 
