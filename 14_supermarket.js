@@ -30,7 +30,19 @@ Check your solutions with mocha 16_supermarket.js
 */
 
 function queueTime(customers, n) {
-    // Your code here
+    let scos = []
+    while (scos.length < n) {
+        scos.push(0)
+    }
+
+    let i = 0
+    while (i < customers.length) {
+        scos[0] += customers[i]
+        scos.sort((a, b) => a - b)
+        
+        i++
+    }
+    return scos.pop()
 };
 
 const assert = require('assert');
