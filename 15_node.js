@@ -29,6 +29,9 @@ const requestHandler = (request, response) => {
 
   if (request.url === '/hello') {
     response.end('world')
+  } else if (request.url === '/') {
+    response
+    response.end("<h1>BEHOLD: HTML</h1>")
   }
 
   response.end('Not found!!')
