@@ -13,3 +13,10 @@ maskify(                "") ==                 ""
 maskify("Skippy")                                   == "##ippy"
 maskify("Nananananananananananananananana Batman!") == "######################################man!"
 */
+
+const maskify = (string) => {
+  const last4Chars = string.slice(-4);
+  return last4Chars.padStart(string.length, '#');
+}
+
+console.log(maskify("love you"))
